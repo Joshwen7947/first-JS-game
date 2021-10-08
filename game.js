@@ -5,6 +5,7 @@ canvas.width = 500;
 canvas.height = 500;
 const CANVAS_WIDTH = canvas.width;
 const CANVAS_HEIGHT = canvas.height;
+let characterSpeed = 5;
 // CHANGE WIDTH & HEIGHT OF BAR
 let characterW = 0;
 const CHARACTER_H = 50;
@@ -27,7 +28,7 @@ function update() {
 	if (characterW >= 300) {
 		isGameOver = true;
 	}
-
+	console.log(characterX);
 	characterW += 1; //update charx
 	console.log('update x ', characterX);
 	console.log('update y ', characterY);
@@ -46,11 +47,30 @@ function draw() {
 	ctx.fillText(`Progress: ${Math.floor(progress / 3)}%`, 100, 100);
 }
 
+let keys = {};
+function keyboardListeners() {
+	function myTest(x) {
+		if (x.key === 'ArrowRight') {
+			characterX += 5;
+		}
+		if (x.key === 'ArrowLeft') {
+			characterX += 5;
+		}
+		if (x.key === 'ArrowUp') {
+			characterX += 5;
+		}
+		if (x.key === 'ArrowDown') {
+			characterX += 5;
+		}
+	}
+	document.addEventListener(`keydown`, myTest);
+}
+keyboardListeners();
 function main() {
 	if (!isGameOver) {
 		update();
 		draw();
 	}
 }
-
+// main();
 setInterval(main, 50);
